@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15%;
+
+    color: #e6edf3;
+    background-color: #30363d;
+    font-family: "Mooli", sans-serif;
+}
+
+header {
+    margin-top: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 15px;
+}
+
+main {
+    text-align: center;
+}
+
+input {
+    width: 20vw;
+    margin-top: 7px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: #c0cad5;
+    text-align: center;
+}
+
+.register {
+    margin-top: 20px;
+}
+
+#submitBtn {
+    margin-top: 25px;
+    cursor: pointer;
+    font-weight: 700;
+    border: 1px solid black;
+}
+
+#submitBtn:hover {
+    background-color: black;
+    color: #e6edf3;
+    transition: 0.7s;
+}
