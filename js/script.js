@@ -1,53 +1,43 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
-
-  form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Interrompe o envio padrão do formulário
-
-    const matricula = document.getElementById("register").value;
-
-    fetch("/matricula", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        matricula: matricula,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          alert("Erro ao buscar notas: " + data.error);
-        } else {
-          // Atualizar página de notas
-          window.location.href = "./grades.html";
-
-          // Aqui, você pode armazenar as notas em local storage ou em algum outro lugar
-          // para que possam ser acessadas quando a página grades.html for carregada
-          localStorage.setItem("notas", JSON.stringify(data));
-        }
+  if (window.location.pathname.endsWith("grades.html")) {
+    let data = JSON.parse(localStorage.getItem("gradesData"));
+    if (data) {
+      displayGrades(data);
+    }
+  } else {
+    document.querySelector("form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      let matricula = document.getElementById("register").value;
+      fetch("http://127.0.0.1:5000/matricula", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: matricula,
       })
-      .catch((error) => {
-        alert("Erro ao buscar notas: " + error.message);
-      });
-  });
-});
-
-// Se estivermos na página de notas, vamos atualizar o conteúdo da tabela
-if (window.location.pathname.endsWith("grades.html")) {
-  const notas = JSON.parse(localStorage.getItem("notas") || "[]");
-
-  // Atualizar a tabela com as notas
-  const table = document.querySelector("table");
-  const nome = document.querySelector(".title");
-
-  if (notas.length > 0) {
-    nome.textContent = notas[0].nome; // Nome do aluno (assumindo que o nome também é retornado pelo backend)
-
-    notas.forEach((nota, index) => {
-      table.rows[index + 1].cells[0].textContent = nota.materia;
-      table.rows[index + 1].cells[1].textContent = nota.nota;
+        .then((response) => response.json())
+        .then((data) => {
+          localStorage.setItem("gradesData", JSON.stringify(data));
+          window.location.href = "./grades.html";
+        });
     });
   }
+});
+
+function displayGrades(data) {
+  let rows = document.querySelectorAll("table tr");
+  for (let i = 1; i <= data.length; i++) {
+    rows[i].children[0].textContent = data[i - 1].materia;
+    rows[i].children[1].textContent = data[i - 1].nota;
+  }
+  let sum = 0;
+  console.log(data);
+  for (let grade of data) {
+    sum += parseFloat(grade.nota);
+  }
+  let avg = sum / data.length;
+  document.querySelector(".footer").textContent =
+    "Média Final: " + avg.toFixed(2);
+  let statusElement = document.querySelector("h1");
+  statusElement.textContent = avg >= 7 ? "Aprovado(a)" : "Reprovado(a)";
 }

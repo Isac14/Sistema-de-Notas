@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from server.entities.entities import Nota
-from flask import jsonify
+from server.entities.entities import Nota, Aluno
+from flask import request, jsonify
 
 engine = create_engine('postgresql://postgres:142804@localhost:5432/sistema_notas')
 Session = sessionmaker(bind=engine)
@@ -34,7 +34,7 @@ def create_routes(app):
         session = Session()
         try:
             data = request.json
-            matricula = data.get('matricula')
+            matricula = data
 
             aluno = session.query(Aluno).filter_by(matricula=matricula).first()
 
