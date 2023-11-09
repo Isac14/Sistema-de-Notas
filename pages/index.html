@@ -8,30 +8,49 @@
     <link rel="icon" href="../images/dezIcon2.png" />
   </head>
   <body>
-    <header>
-      <h1>Bem vindo!</h1>
-      <h2>Preencha as informações abaixo para verificar a sua nota final!</h2>
-    </header>
+    <nav>
+      <img
+        src="../images/logo.webp"
+        alt="Logo da Escola Exemplo"
+        class="logo"
+      />
+      <div id="items">
+        <a href="contato.html" class="btn">Contato</a>
+        <a href="cursos.html" class="btn">Sobre a escola</a>
+        <a href="eventos.html" class="btn">Matricule-se</a>
+      </div>
+    </nav>
 
-    <main>
-      <form method="post" action="http://127.0.0.1:5000/matricula">
-        <div class="name">
-          <h3>Nome completo</h3>
-          <input id="name" type="text" placeholder="Digite seu nome" />
-        </div>
+    <div id="content">
+      <header>
+        <h1>Bem vindo!</h1>
+        <h2>Preencha as informações abaixo para verificar a sua nota final!</h2>
+      </header>
 
-        <div class="register">
-          <h3>Matrícula</h3>
-          <input
-            id="register"
-            type="number"
-            placeholder="Informe a sua matrícula"
-          />
-        </div>
+      <main>
+        <form method="post" action="http://127.0.0.1:5000/matricula">
+          <div class="register">
+            <h3>Matrícula</h3>
+            <input
+              id="register"
+              type="number"
+              placeholder="Informe a sua matrícula"
+            />
+          </div>
 
-        <input id="submitBtn" type="submit" formaction="./grades.html" />
-      </form>
-    </main>
+          <div class="register">
+            <h3>Senha</h3>
+            <input
+              id="password"
+              type="password"
+              placeholder="Digite a sua senha"
+            />
+          </div>
+
+          <input id="submitBtn" type="submit" formaction="./grades.html" />
+        </form>
+      </main>
+    </div>
 
     <script src="../js/script.js"></script>
   </body>
