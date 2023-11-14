@@ -18,22 +18,24 @@
         <a href="contato.html" class="btn">Contato</a>
         <a href="sobre.html" class="btn">Sobre a escola</a>
         <a href="matricule.html" class="btn">Matricule-se</a>
-        <a href="cadastro.html" class="btn" style="background-color: blue"
-          >Cadastro</a
+        <a href="index.html" class="btn" style="background-color: blue"
+          >Início</a
         >
       </div>
     </nav>
 
     <div id="content">
       <header>
-        <h1>Bem vindo!</h1>
-        <h2>Preencha as informações abaixo para verificar a sua nota final!</h2>
+        <h1 style="color: red">Esta página é restrita aos administradores!</h1>
+        <h2>
+          Preencha os campos abaixo para realizar o cadastro de um novo aluno
+        </h2>
       </header>
 
       <main>
         <form method="post" action="http://127.0.0.1:5000/matricula">
           <div class="register">
-            <h3>Matrícula</h3>
+            <h3>Número da Matrícula</h3>
             <input
               id="register"
               type="number"
@@ -42,15 +44,20 @@
           </div>
 
           <div class="register">
-            <h3>Senha</h3>
+            <h3>Nome do Aluno</h3>
             <input
-              id="password"
-              type="password"
+              id="nomeAluno"
+              type="text"
               placeholder="Digite a sua senha"
             />
           </div>
 
-          <input id="submitBtn" type="submit" formaction="./grades.html" />
+          <input
+            id="submitBtn"
+            type="submit"
+            formaction="./grades.html"
+            value="Cadastrar"
+          />
         </form>
       </main>
     </div>
